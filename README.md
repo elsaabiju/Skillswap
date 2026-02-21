@@ -13,7 +13,7 @@
 - Elsa Biju - [Viswajyothi College of Engineering and Technology]
 
 ### Hosted Project Link
-[https://skillswap-hyperlocal.vercel.app/](#) *(Demo Link Placeholder)*
+https://elsaabiju.github.io/Skillswap/
 
 ### Project Description
 SkillSwap is a hyperlocal, trade-based knowledge exchange platform where knowledge is the only currency. It enables users to connect with experts in their immediate neighborhood to trade skills directly—escaping the monetary barriers of traditional learning.
@@ -151,3 +151,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 Made with ❤️ at TinkerHub
+
