@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop" alt="Project Banner" width="100%">
+  <img src="./img.png" alt="Project Banner" width="100%">
 </p>
 
 # SkillSwap 🌀
@@ -79,13 +79,13 @@ index1.html
 
 #### Screenshots
 
-![Screenshot 1](https://raw.githubusercontent.com/AmalBiju/SkillSwap/main/docs/screenshot1.png)
+![Screenshot 1](Screenshot 2026-02-21 071939.png)
 *The Modern Onboarding: A clean, high-end entry point for new members.*
 
-![Screenshot 2](https://raw.githubusercontent.com/AmalBiju/SkillSwap/main/docs/screenshot2.png)
+![Screenshot 2](Screenshot 2026-02-21 072330.png)
 *The Discovery Dashboard: Visualizing smart matches and recommended skill peers.*
 
-![Screenshot 3](https://raw.githubusercontent.com/AmalBiju/SkillSwap/main/docs/screenshot3.png)
+![Screenshot 3](Screenshot 2026-02-21 071820.png)
 *The Sketch Interface: An artistic blueprint view for creative swappers.*
 
 #### Diagrams
@@ -109,7 +109,7 @@ SkillSwap operates as a high-performance Client-Side Application.
 ## Project Demo
 
 ### Video
-[Watch the SkillSwap Demo on YouTube](#) *(Placeholder)*
+[SkillSwap _ Professional Knowledge Network - Google Chrome 2026-02-21 07-11-59.mp4](#) *(Placeholder)*
 
 The video demonstrates the complete user journey: from the artistic onboarding splash screen to the smart match dashboard, showing how the SP system rewards peer-to-peer engagement.
 
@@ -140,7 +140,7 @@ The video demonstrates the complete user journey: from the artistic onboarding s
 
 ## Team Contributions
 
-- **Amal Biju**: Full-stack development, UI/UX conceptualization, and technical documentation.
+- **Aparna Arun and Elsa Biju**: Full-stack development, UI/UX conceptualization, and technical documentation.
 
 ---
 
