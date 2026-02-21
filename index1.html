@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillSwap | Elegant Knowledge Exchange</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0F172A;
+            --accent-emerald: #10b981;
+            --accent-indigo: #6366f1;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: #f1f5f9;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glass {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card-elegant {
+            background: #1e293b;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 40px;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .card-elegant:hover {
+            transform: translateY(-8px);
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .pill-tab {
+            transition: all 0.3s ease;
+        }
+
+        .pill-tab.active {
+            background: #334155;
+            color: #818cf8;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .mesh-blob {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -1;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .hide {
+            display: none !important;
+        }
+
+        input::placeholder {
+            color: #475569;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-page {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Background Decoration -->
+    <div class="mesh-blob top-[-10%] left-[-10%] bg-indigo-600"></div>
+    <div class="mesh-blob bottom-[-10%] right-[-10%] bg-emerald-600"></div>
+
+    <!-- LANDING VIEW -->
+    <section id="view-landing"
+        class="min-h-screen flex flex-col items-center justify-center p-6 text-center animate-page">
+        <div class="space-y-8 max-w-3xl">
+            <div
+                class="inline-flex items-center gap-2 px-4 py-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full text-indigo-400 text-sm font-bold tracking-wider">
+                ✨ THE FUTURE OF KNOWLEDGE EXCHANGE
+            </div>
+            <h1 class="text-7xl md:text-9xl font-black tracking-tighter">
+                Skill<span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-indigo-400">Swap</span>
+            </h1>
+            <p class="text-xl text-slate-400 font-medium leading-relaxed">
+                Trade what you know for what you need. <br class="hidden md:block">
+                No money, just real people helping each other level up.
+            </p>
+            <div class="pt-8">
+                <button onclick="showView('setup')"
+                    class="group flex items-center gap-3 px-12 py-5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-3xl text-xl font-bold transition-all shadow-2xl shadow-indigo-500/30 active:scale-95 mx-auto">
+                    Start Swapping
+                    <svg class="w-6 h-6 group-hover:translate-x-2 transition-transform" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SETUP VIEW -->
+    <section id="view-setup" class="min-h-screen flex flex-col items-center justify-center p-6 hide">
+        <div
+            class="w-full max-w-lg bg-slate-900/50 backdrop-blur-xl p-10 rounded-[50px] border border-slate-800 space-y-8 shadow-2xl animate-page">
+            <div class="space-y-2">
+                <h2 class="text-4xl font-bold text-white">The Setup</h2>
+                <p class="text-slate-500 font-medium">Create your profile to start matching.</p>
+            </div>
+
+            <div class="space-y-6">
+                <div class="space-y-2">
+                    <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Your
+                        Identity</label>
+                    <input id="setup-name"
+                        class="w-full bg-slate-800/50 border border-slate-700 rounded-2xl py-4 px-6 text-white outline-none focus:border-indigo-500 transition-all font-medium"
+                        placeholder="Full Name">
+                </div>
+                <div class="space-y-2">
+                    <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Current
+                        Location</label>
+                    <input id="setup-city"
+                        class="w-full bg-slate-800/50 border border-slate-700 rounded-2xl py-4 px-6 text-white outline-none focus:border-indigo-500 transition-all font-medium"
+                        placeholder="City or District">
+                </div>
+                <div class="space-y-2">
+                    <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">What can you
+                        teach?</label>
+                    <input id="setup-have"
+                        class="w-full bg-slate-800/50 border border-slate-700 rounded-2xl py-4 px-6 text-white outline-none focus:border-indigo-500 transition-all font-medium"
+                        placeholder="e.g. Design, Python, Cooking">
+                </div>
+                <div class="space-y-2">
+                    <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">What do you want
+                        to learn?</label>
+                    <input id="setup-want"
+                        class="w-full bg-slate-800/50 border border-slate-700 rounded-2xl py-4 px-6 text-white outline-none focus:border-indigo-500 transition-all font-medium"
+                        placeholder="e.g. Guitar, French, Marketing">
+                </div>
+            </div>
+
+            <button onclick="finishSetup()"
+                class="w-full py-5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-3xl font-bold text-lg transition-all shadow-xl shadow-indigo-900/40">
+                Complete Initialization
+            </button>
+        </div>
+    </section>
+
+    <!-- DASHBOARD VIEW -->
+    <section id="view-dashboard" class="max-w-7xl mx-auto p-6 md:p-12 space-y-12 pb-32 hide">
+        <!-- Top Nav -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 animate-page">
+            <div>
+                <h1 class="text-4xl font-black tracking-tight">SkillSwap <span class="text-indigo-400">Hub</span></h1>
+                <p id="user-sub"
+                    class="text-slate-500 text-xs font-bold uppercase tracking-widest mt-1 flex items-center gap-2">
+                    <svg class="w-3 h-3 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                        </path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    <span>LOCATION</span>
+                </p>
+            </div>
+            <div class="flex items-center gap-4 bg-slate-900 border border-slate-800 p-2 pl-6 rounded-[32px] shadow-xl">
+                <div class="text-right">
+                    <p class="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Reputation</p>
+                    <p class="text-xl font-black text-indigo-400">250 XP</p>
+                </div>
+                <div id="user-avatar"
+                    class="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center font-bold text-white text-xl">
+                    U</div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="flex p-1.5 bg-slate-900/80 backdrop-blur border border-slate-800 rounded-2xl w-fit animate-page">
+            <button onclick="setTab('matches')" id="tab-matches"
+                class="pill-tab active px-6 py-2.5 rounded-xl text-sm font-bold">Smart Matches</button>
+            <button onclick="setTab('browse')" id="tab-browse"
+                class="pill-tab px-6 py-2.5 rounded-xl text-sm font-bold">Directory</button>
+            <button onclick="setTab('leaderboard')" id="tab-leaderboard"
+                class="pill-tab px-6 py-2.5 rounded-xl text-sm font-bold">Leaderboard</button>
+        </div>
+
+        <!-- Dynamic Content -->
+        <div id="content-area" class="animate-page">
+            <!-- Content injected via JS -->
+        </div>
+    </section>
+
+    <!-- Floating Bottom Nav -->
+    <div id="bottom-nav"
+        class="fixed bottom-8 left-1/2 -translate-x-1/2 w-full max-w-sm bg-slate-900/80 backdrop-blur-2xl border border-slate-800 rounded-[32px] p-2 flex justify-around shadow-2xl z-50 hide animate-page">
+        <button onclick="setTab('matches')" class="flex flex-col items-center gap-1 py-2 px-4 text-indigo-400">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z">
+                </path>
+            </svg>
+            <span class="text-[8px] font-black uppercase tracking-widest">Matches</span>
+        </button>
+        <button onclick="setTab('browse')" class="flex flex-col items-center gap-1 py-2 px-4 text-slate-500">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+            <span class="text-[8px] font-black uppercase tracking-widest">Browse</span>
+        </button>
+        <button onclick="setTab('leaderboard')" class="flex flex-col items-center gap-1 py-2 px-4 text-slate-500">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
+                </path>
+            </svg>
+            <span class="text-[8px] font-black uppercase tracking-widest">Board</span>
+        </button>
+    </div>
+
+    <script>
+        const DUMMY_MEMBERS = [
+            { id: '1', name: 'Elena Vance', city: 'San Francisco', have: ['UI Design', 'Figma'], want: ['Gardening'], points: 1450 },
+            { id: '2', name: 'Marcus Chen', city: 'Toronto', have: ['Python', 'SQL'], want: ['Guitar'], points: 2100 },
+            { id: '3', name: 'Sarah Miller', city: 'London', have: ['Guitar', 'Vocals'], want: ['Cooking'], points: 890 },
+            { id: '4', name: 'Julian Banks', city: 'New York', have: ['French', 'Spanish'], want: ['UI Design'], points: 670 },
+            { id: '5', name: 'Amara Okafor', city: 'Berlin', have: ['Calculus', 'Physics'], want: ['Yoga'], points: 3200 },
+            { id: '6', name: 'Leo Martinez', city: 'Austin', have: ['Yoga', 'Fitness'], want: ['Mechanics'], points: 540 },
+        ];
+
+        let state = {
+            view: 'landing',
+            activeTab: 'matches',
+            profile: { name: '', city: '', have: '', want: '', points: 250 }
+        };
+
+        function showView(viewId) {
+            document.querySelectorAll('section').forEach(s => s.classList.add('hide'));
+            document.getElementById('view-' + viewId).classList.remove('hide');
+            if (viewId === 'dashboard') document.getElementById('bottom-nav').classList.remove('hide');
+            state.view = viewId;
+        }
+
+        function finishSetup() {
+            const name = document.getElementById('setup-name').value;
+            const city = document.getElementById('setup-city').value;
+            const have = document.getElementById('setup-have').value;
+            const want = document.getElementById('setup-want').value;
+
+            if (!name || !city || !have || !want) {
+                alert("Please fill in all details!");
+                return;
+            }
+
+            state.profile = { name, city, have, want, points: 250 };
+
+            // Update UI with profile data
+            document.getElementById('user-sub').querySelector('span').innerText = city + ' • Active Member';
+            document.getElementById('user-avatar').innerText = name[0];
+
+            showView('dashboard');
+            renderContent();
+        }
+
+        function setTab(tabId) {
+            state.activeTab = tabId;
+            document.querySelectorAll('.pill-tab').forEach(t => t.classList.remove('active'));
+            document.getElementById('tab-' + tabId).classList.add('active');
+            renderContent();
+        }
+
+        function renderContent() {
+            const area = document.getElementById('content-area');
+            area.innerHTML = '';
+
+            if (state.activeTab === 'matches') {
+                const myHaves = state.profile.have.toLowerCase().split(',').map(s => s.trim());
+                const myWants = state.profile.want.toLowerCase().split(',').map(s => s.trim());
+
+                const matches = DUMMY_MEMBERS.filter(m => {
+                    const mHaves = m.have.map(s => s.toLowerCase());
+                    const mWants = m.want.map(s => s.toLowerCase());
+                    return myHaves.some(h => mWants.includes(h)) || myWants.some(w => mHaves.includes(w));
+                });
+
+                if (matches.length === 0) {
+                    area.innerHTML = `<div class="py-20 text-center text-slate-500 font-medium">No direct matches found. Try searching in the Directory!</div>`;
+                } else {
+                    const grid = document.createElement('div');
+                    grid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6';
+                    matches.forEach(m => grid.appendChild(createMemberCard(m, true)));
+                    area.appendChild(grid);
+                }
+            }
+            else if (state.activeTab === 'browse') {
+                const grid = document.createElement('div');
+                grid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6';
+                DUMMY_MEMBERS.forEach(m => grid.appendChild(createMemberCard(m, false)));
+                area.appendChild(grid);
+            }
+            else if (state.activeTab === 'leaderboard') {
+                const sorted = [...DUMMY_MEMBERS, { ...state.profile, id: 'me' }].sort((a, b) => b.points - a.points);
+                const list = document.createElement('div');
+                list.className = 'bg-slate-900 border border-slate-800 rounded-[40px] overflow-hidden shadow-2xl';
+                list.innerHTML = `<div class="p-8 border-b border-slate-800 bg-indigo-600/5 flex justify-between items-center"><h3 class="text-2xl font-bold flex items-center gap-3">Global Hall of Fame</h3></div>`;
+
+                sorted.forEach((s, i) => {
+                    const item = document.createElement('div');
+                    item.className = `flex items-center justify-between p-6 border-b border-slate-800 last:border-0 hover:bg-slate-800/50 transition-colors ${s.id === 'me' ? 'bg-indigo-600/10' : ''}`;
+                    item.innerHTML = `
+                        <div class="flex items-center gap-6">
+                            <span class="w-8 text-center text-xl font-black ${i < 3 ? 'text-indigo-400' : 'text-slate-700'}">${i + 1}</span>
+                            <div class="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center font-bold text-slate-300 border border-slate-700">${s.name[0]}</div>
+                            <div>
+                                <p class="font-bold text-lg leading-tight text-white">${s.name} ${s.id === 'me' ? '<span class="text-[9px] bg-indigo-500 text-white px-2 py-0.5 rounded-full ml-1">YOU</span>' : ''}</p>
+                                <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1">${s.city || 'Swapper'}</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl font-black text-white">${s.points.toLocaleString()}</p>
+                            <p class="text-[9px] text-indigo-400 font-bold uppercase tracking-widest">Skill Points</p>
+                        </div>
+                    `;
+                    list.appendChild(item);
+                });
+                area.appendChild(list);
+            }
+        }
+
+        function createMemberCard(member, isMatch) {
+            const div = document.createElement('div');
+            div.className = `card-elegant p-8 group relative overflow-hidden ${isMatch ? 'border-indigo-500/30' : ''}`;
+            div.innerHTML = `
+                ${isMatch ? '<div class="absolute top-0 right-0 bg-indigo-600 text-[9px] font-black py-1 px-4 rounded-bl-2xl uppercase tracking-widest">Perfect Match</div>' : ''}
+                <div class="flex items-center gap-4 mb-8">
+                    <div class="w-14 h-14 bg-slate-800 rounded-2xl flex items-center justify-center font-bold text-xl text-indigo-400 group-hover:scale-110 transition-transform border border-slate-700 shadow-lg">${member.name[0]}</div>
+                    <div>
+                        <h4 class="font-bold text-lg text-white">${member.name}</h4>
+                        <div class="flex items-center gap-1 text-[10px] text-slate-500 font-bold uppercase tracking-wider mt-0.5">${member.city}</div>
+                    </div>
+                </div>
+                <div class="space-y-5">
+                    <div class="space-y-2">
+                        <p class="text-[10px] font-bold text-slate-600 uppercase tracking-widest">Offers</p>
+                        <div class="flex flex-wrap gap-2">
+                            ${member.have.map(s => `<span class="bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-3 py-1 rounded-lg text-xs font-bold">${s}</span>`).join('')}
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <p class="text-[10px] font-bold text-slate-600 uppercase tracking-widest">Seeking</p>
+                        <div class="flex flex-wrap gap-2">
+                            ${member.want.map(s => `<span class="bg-slate-800 text-slate-400 border border-slate-700 px-3 py-1 rounded-lg text-xs font-bold">${s}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+                <button class="w-full mt-8 py-4 bg-indigo-600/10 group-hover:bg-indigo-600 text-indigo-400 group-hover:text-white rounded-2xl font-bold transition-all flex items-center justify-center gap-2 border border-indigo-500/20">
+                    Request Swap
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </button>
+            `;
+            return div;
+        }
+
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            showView('landing');
+        });
+    </script>
+</body>
+
+</html>

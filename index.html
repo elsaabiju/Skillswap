@@ -4,172 +4,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SkillSwap | Trade what you know. Learn what you don't.</title>
-    <meta name="description"
-        content="SkillSwap is a hyperlocal platform for trading skills. Join a community of learners and teachers.">
-    <!-- Google Fonts -->
+    <title>SkillSwap | Professional Knowledge Network</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap"
         rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #0a0a0a;
-            --card-bg: rgba(25, 25, 25, 0.7);
-            --accent: #00f5a0;
-            --secondary: #7c6dfa;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --glow: 0 0 15px rgba(0, 245, 160, 0.3);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            outline: none;
+            --bg: #F8F9F2;
+            --surface: #FFFFFF;
+            --primary: #2D6A4F;
+            --primary-light: #74C69D;
+            --accent-earth: #6D4C41;
+            --text-main: #1B4332;
+            --text-dim: #52796F;
+            --border: rgba(45, 106, 79, 0.1);
         }
 
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-primary);
-            font-family: 'Syne', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            letter-spacing: -0.01em;
             overflow-x: hidden;
-            min-height: 100vh;
-            line-height: 1.6;
         }
 
-        /* Ambient Background Elements */
-        .ambient-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
+        .serif {
+            font-family: 'Fraunces', serif;
         }
 
-        .blob {
-            position: absolute;
-            filter: blur(80px);
-            opacity: 0.15;
-            border-radius: 50%;
+        .glass {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 2rem;
         }
 
-        .blob-1 {
-            width: 400px;
-            height: 400px;
-            background: var(--accent);
-            top: -100px;
-            right: -100px;
-            animation: float 20s infinite alternate;
+        .botanical-gradient {
+            background: radial-gradient(circle at 0% 0%, rgba(116, 198, 157, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 100% 100%, rgba(45, 106, 79, 0.08) 0%, transparent 40%);
         }
 
-        .blob-2 {
-            width: 500px;
-            height: 500px;
-            background: var(--secondary);
-            bottom: -150px;
-            left: -150px;
-            animation: float 25s infinite alternate-reverse;
+        .btn-action {
+            background: var(--primary);
+            color: white;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            border-radius: 1rem;
         }
 
-        @keyframes float {
-            0% {
-                transform: translate(0, 0);
-            }
-
-            100% {
-                transform: translate(100px, 100px);
-            }
+        .btn-action:hover {
+            box-shadow: 0 10px 25px rgba(45, 106, 79, 0.2);
+            transform: translateY(-2px);
+            background: #1B4332;
         }
 
-        /* Global Typography */
-        h1,
-        h2,
-        h3 {
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: -1px;
+        .role-btn {
+            border: 2px solid var(--border);
+            transition: all 0.3s ease;
         }
 
-        .mono {
-            font-family: 'DM Mono', monospace;
-            font-size: 0.85rem;
+        .role-btn.active {
+            border-color: var(--primary);
+            background: rgba(45, 106, 79, 0.05);
+            color: var(--primary);
         }
 
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1.5rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(15px);
-            z-index: 1000;
-            border-bottom: 1px solid var(--glass-border);
+        .sp-bar-fill {
+            transition: width 1.5s cubic-bezier(0.65, 0, 0.35, 1);
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
         }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            background: linear-gradient(90deg, var(--accent), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            cursor: pointer;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links li a {
-            color: var(--text-secondary);
-            text-decoration: none;
+        .nav-tab {
+            position: relative;
+            transition: all 0.3s ease;
             font-weight: 600;
-            transition: var(--transition);
-            font-size: 0.9rem;
-            text-transform: uppercase;
+            color: var(--text-dim);
         }
 
-        .nav-links li a:hover,
-        .nav-links li a.active {
-            color: var(--accent);
+        .nav-tab.active {
+            color: var(--primary);
         }
 
-        /* Layout Container */
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
+        .nav-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 99px;
         }
 
-        section {
-            padding: 100px 0;
-            display: none;
-            /* Hidden by default */
-            min-height: 100vh;
+        .hide {
+            display: none !important;
         }
 
-        section.active {
-            display: block;
-            animation: fadeIn 0.5s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
+        @keyframes slideUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
 
             to {
@@ -178,969 +115,588 @@
             }
         }
 
-        /* LANDING PAGE */
-        .hero {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding-top: 15vh;
+        .animate-rise {
+            animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
         }
 
-        .hero h1 {
-            font-size: clamp(3rem, 10vw, 6rem);
-            line-height: 0.9;
-            margin-bottom: 1.5rem;
+        .leaf-pill {
+            background: rgba(45, 106, 79, 0.05);
+            color: var(--primary);
+            border: 1px solid rgba(45, 106, 79, 0.1);
         }
 
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin-bottom: 3rem;
+        .organic-radius {
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
         }
 
-        .cta-group {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 5rem;
+        /* Message Bubbles */
+        .bubble-in {
+            background: white;
+            border-radius: 0.2rem 1.5rem 1.5rem 1.5rem;
+            border: 1px solid var(--border);
         }
 
-        .btn {
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            font-family: 'Syne', sans-serif;
-            font-weight: 700;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-            font-size: 0.9rem;
-        }
-
-        .btn-primary {
-            background-color: var(--accent);
-            color: #000;
-            box-shadow: var(--glow);
-        }
-
-        .btn-primary:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(0, 245, 160, 0.5);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            border: 2px solid var(--secondary);
-            color: var(--secondary);
-        }
-
-        .btn-secondary:hover {
-            background: var(--secondary);
+        .bubble-out {
+            background: var(--primary);
             color: white;
-            transform: scale(1.05);
+            border-radius: 1.5rem 1.5rem 0.2rem 1.5rem;
         }
 
-        .how-it-works {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-            width: 100%;
-        }
-
-        .step-card {
-            background: var(--card-bg);
-            padding: 3rem 2rem;
-            border-radius: 24px;
-            border: 1px solid var(--glass-border);
-            text-align: center;
-            transition: var(--transition);
-        }
-
-        .step-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .step-number {
-            font-size: 3rem;
-            font-weight: 800;
-            -webkit-text-stroke: 1px var(--accent);
-            color: transparent;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        /* BROWSE PAGE */
-        .page-header {
-            margin-bottom: 3rem;
-        }
-
-        .controls {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            align-items: center;
-        }
-
-        .search-bar {
-            flex-grow: 1;
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            padding: 0.8rem 1.5rem;
-            border-radius: 12px;
-            color: white;
-            min-width: 300px;
-        }
-
-        .filter-tabs {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-tab {
-            padding: 0.6rem 1.2rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--glass-border);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .filter-tab.active {
-            background: var(--accent);
-            color: black;
-            border-color: var(--accent);
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 2rem;
-            position: relative;
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card:hover {
-            background: rgba(35, 35, 35, 0.9);
-            border-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-10px);
-        }
-
-        .card-header {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: white;
-            flex-shrink: 0;
-            border: 2px solid var(--glass-border);
-        }
-
-        .user-info h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.2rem;
-        }
-
-        .user-info p {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-        }
-
-        .xp-badge {
+        .xp-popup {
             position: absolute;
-            top: 2rem;
-            right: 2rem;
-            background: rgba(124, 109, 250, 0.15);
-            color: #bfa3ff;
-            padding: 0.3rem 0.8rem;
-            border-radius: 100px;
-            font-size: 0.65rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            border: 1px solid rgba(124, 109, 250, 0.3);
-            box-shadow: 0 0 10px rgba(124, 109, 250, 0.2);
+            color: var(--primary);
+            font-weight: 800;
+            pointer-events: none;
+            animation: xpFloat 1s ease-out forwards;
+            z-index: 100;
         }
 
-        .xp-glow {
-            box-shadow: 0 0 15px var(--accent);
-            border-color: var(--accent);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
+        @keyframes xpFloat {
             0% {
-                transform: scale(1);
+                transform: translateY(0);
                 opacity: 1;
-            }
-
-            50% {
-                transform: scale(1.05);
-                opacity: 0.8;
             }
 
             100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        .tags-container {
-            margin-bottom: 1.5rem;
-        }
-
-        .tag-label {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            color: var(--text-secondary);
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .tag {
-            padding: 0.3rem 0.7rem;
-            border-radius: 6px;
-            font-family: 'DM Mono', monospace;
-            font-size: 0.7rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--glass-border);
-        }
-
-        .tag-offer {
-            color: var(--accent);
-            border-color: rgba(0, 245, 160, 0.3);
-        }
-
-        .tag-want {
-            color: var(--secondary);
-            border-color: rgba(124, 109, 250, 0.3);
-        }
-
-        .card-footer {
-            margin-top: auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .rating {
-            font-size: 0.85rem;
-            color: #ffd700;
-        }
-
-        /* BEGINNER MODE */
-        .beginner-intro {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .beginner-intro h2 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        /* LEADERBOARD */
-        .lb-table {
-            width: 100%;
-            background: var(--card-bg);
-            border-radius: 24px;
-            border: 1px solid var(--glass-border);
-            overflow: hidden;
-            border-collapse: collapse;
-        }
-
-        .lb-row {
-            display: grid;
-            grid-template-columns: 80px 1fr 150px 150px;
-            padding: 1.5rem 2rem;
-            align-items: center;
-            border-bottom: 1px solid var(--glass-border);
-            transition: var(--transition);
-        }
-
-        .lb-row.header {
-            background: rgba(255, 255, 255, 0.05);
-            text-transform: uppercase;
-            font-weight: 700;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-        }
-
-        .lb-row:not(.header):hover {
-            background: rgba(255, 255, 255, 0.03);
-        }
-
-        .rank {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--text-secondary);
-        }
-
-        .lb-row:nth-child(2) .rank {
-            color: gold;
-        }
-
-        .lb-row:nth-child(3) .rank {
-            color: silver;
-        }
-
-        .lb-row:nth-child(4) .rank {
-            color: #cd7f32;
-        }
-
-        .lb-user {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .lb-xp {
-            font-weight: 700;
-            color: var(--accent);
-        }
-
-        /* MODAL */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            backdrop-filter: blur(10px);
-        }
-
-        .modal {
-            background: #111;
-            width: 90%;
-            max-width: 800px;
-            max-height: 90vh;
-            border-radius: 32px;
-            border: 1px solid var(--glass-border);
-            position: relative;
-            padding: 3rem;
-            overflow-y: auto;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            font-size: 2rem;
-            cursor: pointer;
-            color: var(--text-secondary);
-        }
-
-        .modal-grid {
-            display: grid;
-            grid-template-columns: 200px 1fr;
-            gap: 3rem;
-        }
-
-        .review-card {
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 12px;
-            margin-bottom: 1rem;
-            font-size: 0.85rem;
-        }
-
-        .history-log {
-            list-style: none;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-        }
-
-        .history-item {
-            padding: 0.5rem 0;
-            border-bottom: 1px dotted var(--glass-border);
-        }
-
-        /* ONBOARDING FORM */
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            color: var(--text-secondary);
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .form-input {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--glass-border);
-            padding: 1rem;
-            border-radius: 12px;
-            color: white;
-            font-family: 'DM Mono', monospace;
-            transition: var(--transition);
-        }
-
-        .form-input:focus {
-            border-color: var(--accent);
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        .skill-input-container {
-            display: flex;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-        }
-
-        /* TOAST */
-        .toast-container {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 3000;
-        }
-
-        .toast {
-            background: var(--accent);
-            color: black;
-            padding: 1rem 2rem;
-            border-radius: 100px;
-            font-weight: 700;
-            margin-top: 1rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            animation: slideIn 0.3s ease-out;
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateX(100%);
+                transform: translateY(-50px);
                 opacity: 0;
-            }
-
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        /* MOBILE */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 3.5rem;
-            }
-
-            .modal-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .lb-row {
-                grid-template-columns: 50px 1fr 100px;
-            }
-
-            .lb-skill {
-                display: none;
             }
         }
     </style>
 </head>
 
-<body>
+<body class="botanical-gradient min-h-screen">
 
-    <div class="ambient-bg">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-    </div>
-
-    <nav>
-        <div class="logo">SkillSwap</div>
-        <ul class="nav-links">
-            <li><a href="#landing" class="nav-link active">Home</a></li>
-            <li><a href="#browse" class="nav-link">Browse</a></li>
-            <li><a href="#beginners" class="nav-link">Beginners</a></li>
-            <li><a href="#leaderboard" class="nav-link">Leaderboard</a></li>
-            <li><button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.7rem; margin-left: 1rem;"
-                    onclick="openOnboarding()">Join Now</button></li>
-        </ul>
-    </nav>
-
-    <div class="container">
-        <!-- LANDING PAGE -->
-        <section id="landing" class="hero active">
-            <h1>Trade what you know.<br>Learn what you don't.</h1>
-            <p>Hyperlocal skill-sharing community where knowledge is the only currency. Connect with experts in your
-                neighborhood today.</p>
-            <div class="cta-group">
-                <button class="btn btn-primary" onclick="openOnboarding()">Get Started</button>
-                <button class="btn btn-secondary" onclick="navigateTo('browse')">Explore Skills</button>
+    <!-- LANDING VIEW -->
+    <section id="view-landing"
+        class="min-h-screen flex flex-col items-center justify-center p-6 text-center animate-rise">
+        <div class="relative max-w-4xl">
+            <div
+                class="inline-flex items-center gap-2 px-5 py-2 bg-emerald-100/50 border border-emerald-200 rounded-full text-emerald-800 text-xs font-bold uppercase tracking-widest mb-10">
+                ✨ THE FUTURE OF KNOWLEDGE EXCHANGE
             </div>
 
-            <div class="how-it-works">
-                <div class="step-card">
-                    <span class="step-number">01</span>
-                    <h3>Post</h3>
-                    <p>List what you can teach and what you want to master.</p>
+            <h1 class="text-7xl md:text-9xl serif font-black text-emerald-950 tracking-tighter leading-[0.85] mb-8">
+                Skill<span class="italic text-emerald-700">Swap.</span>
+            </h1>
+
+            <p class="text-xl text-emerald-900/60 max-w-2xl mx-auto leading-relaxed mb-12">
+                A sustainable ecosystem for collaborative growth.
+                <span class="text-emerald-900 block font-medium mt-2">Nurture your expertise, earn Skill Points (SP),
+                    and climb the global ranks.</span>
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <button onclick="showView('setup')"
+                    class="btn-action px-12 py-5 font-bold text-lg w-full sm:w-auto shadow-lg">
+                    Initialize Profile
+                </button>
+                <div class="flex items-center gap-3 text-emerald-800/50 font-semibold italic">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
+                        </path>
+                    </svg>
+                    2,400+ Active Members
                 </div>
-                <div class="step-card">
-                    <span class="step-number">02</span>
-                    <h3>Match</h3>
-                    <p>Find nearby swappers with complementary interests.</p>
-                </div>
-                <div class="step-card">
-                    <span class="step-number">03</span>
-                    <h3>Swap</h3>
-                    <p>Meet up, exchange skills, and level up your XP.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- BROWSE PAGE -->
-        <section id="browse">
-            <div class="page-header">
-                <h2>Browse Swappers</h2>
-                <div class="controls">
-                    <input type="text" id="skillSearch" class="search-bar"
-                        placeholder="Search by skill name (e.g. Python)...">
-                    <div class="filter-tabs" id="categoryFilters">
-                        <div class="filter-tab active" data-cat="all">All</div>
-                        <div class="filter-tab" data-cat="Tech">Tech</div>
-                        <div class="filter-tab" data-cat="Creative">Creative</div>
-                        <div class="filter-tab" data-cat="Language">Language</div>
-                        <div class="filter-tab" data-cat="Life Skills">Life Skills</div>
-                        <div class="filter-tab" data-cat="Academic">Academic</div>
-                    </div>
-                </div>
-            </div>
-            <div class="grid" id="swappersGrid">
-                <!-- Cards injected by JS -->
-            </div>
-        </section>
-
-        <!-- BEGINNER MODE PAGE -->
-        <section id="beginners">
-            <div class="beginner-intro">
-                <h2>Everyone starts somewhere.</h2>
-                <p>These students are looking for mentors. Helping them earns you massive XP and community Karma.</p>
-            </div>
-            <div class="grid" id="beginnersGrid">
-                <!-- Beginner cards injected by JS -->
-            </div>
-        </section>
-
-        <!-- LEADERBOARD PAGE -->
-        <section id="leaderboard">
-            <div class="page-header">
-                <h2>Top Swappers</h2>
-                <p>The most active contributors this week based on XP earned.</p>
-            </div>
-            <div class="lb-table">
-                <div class="lb-row header">
-                    <div>Rank</div>
-                    <div>User</div>
-                    <div>Top Skill</div>
-                    <div>XP</div>
-                </div>
-                <div id="leaderboardBody">
-                    <!-- Rows injected by JS -->
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- MODAL -->
-    <div class="modal-overlay" id="profileModal">
-        <div class="modal">
-            <span class="modal-close" onclick="closeModal()">&times;</span>
-            <div id="modalContent">
-                <!-- Content injected by JS -->
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- ONBOARDING MODAL -->
-    <div class="modal-overlay" id="onboardingModal">
-        <div class="modal" style="max-width: 500px;">
-            <span class="modal-close" onclick="closeOnboarding()">&times;</span>
-            <div id="onboardingContent">
-                <h2 style="margin-bottom: 0.5rem">Join the Swap</h2>
-                <p style="color: var(--text-secondary); margin-bottom: 2rem;">Tell us what you want to learn and what
-                    you can teach.</p>
-
-                <form id="onboardingForm" onsubmit="handleOnboarding(event)">
-                    <div class="form-group">
-                        <label>Your Name</label>
-                        <input type="text" id="userName" class="form-input" placeholder="e.g. Alex Doe" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Location</label>
-                        <input type="text" id="userLocation" class="form-input" placeholder="e.g. Chennai, India"
-                            required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>What are you looking for? (Wants)</label>
-                        <input type="text" id="userWants" class="form-input"
-                            placeholder="e.g. French, Guitar (comma separated)" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>What can you offer? (Skills to Teach)</label>
-                        <input type="text" id="userOffers" class="form-input"
-                            placeholder="e.g. Python, Cooking (comma separated)" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Short Bio</label>
-                        <textarea id="userBio" class="form-input" style="height: 100px; resize: none;"
-                            placeholder="Tell potential swappers a bit about yourself..."></textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Create My
-                        Profile</button>
-                </form>
+    <!-- SETUP VIEW -->
+    <section id="view-setup" class="min-h-screen flex items-center justify-center p-6 hide">
+        <div class="glass w-full max-w-2xl p-12 space-y-10 animate-rise shadow-xl border-emerald-100">
+            <div class="space-y-3 text-center">
+                <h2 class="text-4xl serif font-bold text-emerald-950">Member Onboarding</h2>
+                <p id="setup-subtitle" class="text-emerald-800/50 font-medium">Define your status and location to begin
+                    matching.</p>
             </div>
-        </div>
-    </div>
 
-    <!-- TOAST CONTAINER -->
-    <div class="toast-container" id="toastContainer"></div>
+            <!-- Role Selection -->
+            <div class="grid grid-cols-2 gap-4">
+                <button onclick="setRole('Student')" id="role-student"
+                    class="role-btn p-6 rounded-2xl flex flex-col items-center gap-2 group active">
+                    <span class="text-3xl group-hover:scale-110 transition-transform">🎓</span>
+                    <span class="font-bold uppercase text-[10px] tracking-widest">Student / Beginner</span>
+                </button>
+                <button onclick="setRole('Professional')" id="role-pro"
+                    class="role-btn p-6 rounded-2xl flex flex-col items-center gap-2 group">
+                    <span class="text-3xl group-hover:scale-110 transition-transform">💼</span>
+                    <span class="font-bold uppercase text-[10px] tracking-widest">Professional / Mentor</span>
+                </button>
+            </div>
 
-    <script>
-        // --- DUMMY DATA ---
-        const USERS = [
-            { id: 1, name: "Aarav Sharma", location: "Chennai, India", offers: ["Python", "Data Analysis"], wants: ["French", "Guitar"], xp: 1250, level: "Expert", rating: 4.8, category: "Tech", bio: "Data scientist by day, aspiring guitarist by night. I've taught Python to over 50 people.", reviews: [{ text: "Amazing teacher!", rater: "Sneha" }, { text: "Very patient.", rater: "Leo" }], color: "#ff5e7e" },
-            { id: 2, name: "Zara Khan", location: "Bangalore, India", offers: ["UI/UX", "Drawing"], wants: ["Web Dev", "Resume Review"], xp: 840, level: "Connector", rating: 4.5, category: "Creative", bio: "Designer passionate about aesthetic interfaces and charcoal sketching.", reviews: [{ text: "Great eye for detail.", rater: "Raj" }], color: "#a0f500" },
-            { id: 3, name: "Leo Das", location: "Chennai, India", offers: ["Guitar", "Cooking"], wants: ["Fitness", "UI/UX"], xp: 620, level: "Connector", rating: 4.9, category: "Life Skills", bio: "Home chef specialized in Italian cuisine. I can teach you basic chords!", reviews: [], color: "#00a0f5" },
-            { id: 4, name: "Priya Nair", location: "Kochi, India", offers: ["French", "Resume Review"], wants: ["Python", "Math"], xp: 310, level: "Beginner", rating: 4.2, category: "Language", bio: "Linguist looking to break into tech. Happy to help with career prep.", reviews: [], color: "#f5a000" },
-            { id: 5, name: "Vikram Seth", location: "Delhi, India", offers: ["Web Dev", "Photography"], wants: ["Tamil", "Public Speaking"], xp: 2100, level: "Expert", rating: 5.0, category: "Tech", bio: "Full-stack dev and street photographer. Active swapper since 2023.", reviews: [{ text: "The best tech mentor here.", rater: "Amit" }], color: "#7c6dfa" },
-            { id: 6, name: "Sanya Gupta", location: "Mumbai, India", offers: ["Fitness", "Public Speaking"], wants: ["Video Editing", "French"], xp: 550, level: "Connector", rating: 4.6, category: "Life Skills", bio: "Fitness coach and TedX speaker. Let's swap energy!", reviews: [], color: "#00f5a0" },
-            { id: 7, name: "Arjun Reddy", location: "Hyderabad, India", offers: ["Math", "Data Analysis"], wants: ["Cooking", "Guitar"], xp: 120, level: "Beginner", rating: 4.0, category: "Academic", bio: "Math geek looking to survive in the kitchen.", reviews: [], color: "#f500f5" },
-            { id: 8, name: "Meena Iyer", location: "Chennai, India", offers: ["Tamil", "Drawing"], wants: ["UI/UX", "Photography"], xp: 950, level: "Connector", rating: 4.7, category: "Language", bio: "Classical artist and language tutor.", reviews: [], color: "#00f5f5" },
-            { id: 9, name: "Karthik Raja", location: "Chennai, India", offers: ["Video Editing", "French"], wants: ["Web Dev", "Drawing"], xp: 1100, level: "Expert", rating: 4.8, category: "Creative", bio: "Vlogger and polyglot.", reviews: [], color: "#f5f500" },
-            { id: 10, name: "Ananya S", location: "Pune, India", offers: ["Resume Review", "Public Speaking"], wants: ["Fitness", "Tamil"], xp: 400, level: "Connector", rating: 4.4, category: "Life Skills", bio: "HR professional helping people land dreams.", reviews: [], color: "#ff8c00" },
-            { id: 11, name: "Rohan M", location: "Bangalore, India", offers: ["Python", "Web Dev"], wants: ["Video Editing", "Cooking"], xp: 1300, level: "Expert", rating: 4.9, category: "Tech", bio: "Coding is my life, but I need to eat better.", reviews: [], color: "#6dfa7c" },
-            { id: 12, name: "Deepa K", location: "Chennai, India", offers: ["Drawing", "Photography"], wants: ["Math", "Data Analysis"], xp: 280, level: "Beginner", rating: 4.3, category: "Creative", bio: "Freelance artist exploring data art.", reviews: [], color: "#fa6d6d" }
-        ];
-
-        const BEGINNERS = [
-            { id: 101, name: "Rahul S", location: "Chennai", wants: ["Python", "Web Dev"], xp: 0, color: "#aaa" },
-            { id: 102, name: "Sneha G", location: "Mumbai", wants: ["Guitar", "French"], xp: 0, color: "#888" },
-            { id: 103, name: "Amit V", location: "Delhi", wants: ["Cooking", "Drawing"], xp: 0, color: "#999" },
-            { id: 104, name: "Ishita P", location: "Pune", wants: ["UI/UX", "Photography"], xp: 0, color: "#bbb" }
-        ];
-
-        let currentCategory = 'all';
-        let searchQuery = '';
-
-        // --- NAVIGATION ---
-        function navigateTo(sectionId) {
-            document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-            document.getElementById(sectionId).classList.add('active');
-
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${sectionId}`) link.classList.add('active');
-            });
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function openOnboarding() {
-            document.getElementById('onboardingModal').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeOnboarding() {
-            document.getElementById('onboardingModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        function handleOnboarding(e) {
-            e.preventDefault();
-            const name = document.getElementById('userName').value;
-            const location = document.getElementById('userLocation').value;
-            const wants = document.getElementById('userWants').value.split(',').map(s => s.trim());
-            const offers = document.getElementById('userOffers').value.split(',').map(s => s.trim());
-            const bio = document.getElementById('userBio').value;
-
-            const newUser = {
-                id: Date.now(),
-                name,
-                location,
-                offers,
-                wants,
-                xp: 0,
-                level: "Beginner",
-                rating: 0,
-                category: "Tech", // Default to Tech for now
-                bio,
-                reviews: [],
-                color: "var(--accent)"
-            };
-
-            USERS.unshift(newUser); // Add to beginning of list
-            renderBrowse();
-            renderLeaderboard();
-            closeOnboarding();
-            showToast(`Welcome, ${name}! Your profile is now live. 🎉`);
-            navigateTo('browse');
-        }
-
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const target = link.getAttribute('href').substring(1);
-                navigateTo(target);
-            });
-        });
-
-        document.querySelector('.logo').onclick = () => navigateTo('landing');
-
-        // --- RENDER FUNCTIONS ---
-        function getAvatar(name, color) {
-            const initials = name.split(' ').map(n => n[0]).join('');
-            return `<div class="avatar" style="background-color: ${color}">${initials}</div>`;
-        }
-
-        function createCard(user, isBeginner = false) {
-            const card = document.createElement('div');
-            card.className = 'card';
-            card.onclick = () => openModal(user, isBeginner);
-
-            const offersHtml = isBeginner ? '' : `
-                <div class="tags-container">
-                    <span class="tag-label mono">Offers</span>
-                    <div class="tags">${user.offers.map(s => `<span class="tag tag-offer">${s}</span>`).join('')}</div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="space-y-2">
+                    <label class="text-[10px] font-bold text-emerald-800/40 uppercase tracking-widest ml-1">Full
+                        Name</label>
+                    <input id="setup-name"
+                        class="w-full bg-emerald-50/50 border border-emerald-100 p-4 rounded-2xl font-semibold text-emerald-950 outline-none focus:border-emerald-400 focus:bg-white transition-all"
+                        placeholder="e.g. Elena Vance">
                 </div>
-            `;
+                <div class="space-y-2">
+                    <label
+                        class="text-[10px] font-bold text-emerald-800/40 uppercase tracking-widest ml-1">Location</label>
+                    <input id="setup-city"
+                        class="w-full bg-emerald-50/50 border border-emerald-100 p-4 rounded-2xl font-semibold text-emerald-950 outline-none focus:border-emerald-400 focus:bg-white transition-all"
+                        placeholder="e.g. San Francisco">
+                </div>
+                <div id="have-field-container" class="space-y-2 hide">
+                    <label class="text-[10px] font-bold text-emerald-800/40 uppercase tracking-widest ml-1">Skills You
+                        Offer (Mastery)</label>
+                    <input id="setup-have"
+                        class="w-full bg-emerald-50/50 border border-emerald-100 p-4 rounded-2xl font-semibold text-emerald-950 outline-none focus:border-emerald-400 focus:bg-white transition-all"
+                        placeholder="e.g. Design, Python">
+                </div>
+                <div class="space-y-2">
+                    <label class="text-[10px] font-bold text-emerald-800/40 uppercase tracking-widest ml-1">Skills You
+                        Seek (To Learn)</label>
+                    <input id="setup-want"
+                        class="w-full bg-emerald-50/50 border border-emerald-100 p-4 rounded-2xl font-semibold text-emerald-950 outline-none focus:border-emerald-400 focus:bg-white transition-all"
+                        placeholder="e.g. Guitar, French">
+                </div>
+            </div>
 
-            card.innerHTML = `
-                ${isBeginner ? '' : `<span class="xp-badge ${user.xp > 1000 ? 'xp-glow' : ''}">${user.level}</span>`}
-                <div class="card-header">
-                    ${getAvatar(user.name, user.color)}
-                    <div class="user-info">
-                        <h3>${user.name}</h3>
-                        <p>${user.location}</p>
+            <button onclick="finishSetup()" class="btn-action w-full py-5 rounded-2xl font-bold text-xl shadow-lg">
+                Activate Dashboard
+            </button>
+        </div>
+    </section>
+
+    <!-- DASHBOARD VIEW -->
+    <section id="view-dashboard" class="max-w-[1440px] mx-auto p-4 md:p-8 space-y-8 hide pb-32">
+        <header class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 animate-rise">
+            <div class="flex items-center gap-6">
+                <div id="user-avatar"
+                    class="w-16 h-16 organic-radius bg-emerald-700 flex items-center justify-center font-bold text-2xl text-white shadow-xl">
+                    U
+                </div>
+                <div>
+                    <h2 class="text-3xl serif font-black text-emerald-950 leading-tight">Welcome back, <span
+                            id="display-name" class="text-emerald-700">Member</span></h2>
+                    <p id="display-city"
+                        class="text-emerald-800/40 text-xs font-bold uppercase tracking-widest mt-1 flex items-center gap-2">
+                        <svg class="w-3 h-3 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z">
+                            </path>
+                        </svg>
+                        <span id="header-location">LOCATION</span> • <span id="header-role"
+                            class="text-emerald-600">ROLE</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-8 glass p-4 rounded-[2.5rem] bg-white/60">
+                <div class="flex items-center gap-4 px-4 border-r border-emerald-100">
+                    <div class="text-center">
+                        <p class="text-[9px] font-bold text-emerald-800/40 uppercase tracking-widest mb-1">Reputation
+                        </p>
+                        <span id="user-level" class="text-2xl font-bold serif text-emerald-950 italic">LEVEL 1</span>
                     </div>
                 </div>
-                ${offersHtml}
-                <div class="tags-container">
-                    <span class="tag-label mono">Wants</span>
-                    <div class="tags">${user.wants.map(s => `<span class="tag tag-want">${s}</span>`).join('')}</div>
+                <div class="flex-1 lg:w-64 space-y-2 px-4 border-r border-emerald-100">
+                    <div class="flex justify-between items-end">
+                        <span id="xp-text-detail" class="text-sm font-bold text-emerald-700 italic">250 SP</span>
+                        <span class="text-[9px] font-bold text-emerald-800/40 uppercase">TIER PROGRESS</span>
+                    </div>
+                    <div class="xp-bar-container w-full h-2.5 bg-emerald-100 rounded-full overflow-hidden">
+                        <div id="xp-fill" class="sp-bar-fill w-0 h-full"></div>
+                    </div>
                 </div>
-                <div class="card-footer">
-                    ${isBeginner ? '' : `<span class="rating">${'★'.repeat(Math.round(user.rating))} <span style="color:var(--text-secondary)">${user.rating}</span></span>`}
-                    <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.7rem;" 
-                        onclick="handleBtnClick(event, ${isBeginner}, ${user.id})">
-                        ${isBeginner ? 'Mentor This Person (+15 XP)' : 'Request Swap'}
+                <div class="flex items-center gap-3 px-4">
+                    <div class="w-10 h-10 bg-orange-100 rounded-xl flex items-center justify-center text-orange-600">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12,18C8.69,18 6,15.31 6,12C6,8.69 8.69,6 12,6C15.31,6 18,8.69 18,12C18,15.31 15.31,18 12,18M12,20C16.42,20 20,16.42 20,12C20,7.58 16.42,4 12,4C7.58,4 4,7.58 4,12C4,16.42 7.58,20 12,20M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8Z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <p id="user-streak" class="text-lg font-black text-emerald-950 leading-none">3</p>
+                        <p class="text-[9px] font-bold text-emerald-800/40 uppercase tracking-tighter">DAILY STREAK</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <!-- Sidebar -->
+            <aside class="lg:col-span-3 space-y-6">
+                <div class="glass p-6 rounded-[2rem] space-y-6 bg-white/40 border border-emerald-100">
+                    <h3 class="text-xs font-bold text-emerald-800/40 uppercase tracking-widest">Active Swap Hub</h3>
+                    <div id="active-swaps-list" class="space-y-4">
+                        <!-- Swaps populated via JS -->
+                    </div>
+                </div>
+
+                <div
+                    class="bg-emerald-800 p-6 rounded-[2.5rem] text-white shadow-xl space-y-5 relative overflow-hidden">
+                    <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-white/5 rounded-full blur-3xl"></div>
+                    <h3 class="text-xs font-bold uppercase tracking-widest opacity-60">Impact Points</h3>
+                    <div class="space-y-4">
+                        <div onclick="gainXP(event, 50, 'Social Outreach')"
+                            class="flex items-center gap-4 p-3 bg-white/5 rounded-2xl cursor-pointer hover:bg-white/10 transition-all border border-white/5">
+                            <span class="text-xl">🌿</span>
+                            <span class="text-[11px] font-bold">Endorse a Peer <span
+                                    class="block opacity-60 text-[9px] mt-0.5">+50 SP</span></span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main id="main-hub" class="lg:col-span-9 space-y-8">
+                <!-- Navigation -->
+                <div class="flex items-center gap-10 border-b border-emerald-900/5 pb-4">
+                    <button onclick="setTab('matches')" id="tab-matches"
+                        class="nav-tab active text-sm font-bold uppercase tracking-widest">Recommended Matches</button>
+                    <button onclick="setTab('directory')" id="tab-directory"
+                        class="nav-tab text-sm font-bold uppercase tracking-widest">Full Network</button>
+                    <button onclick="setTab('beginners')" id="tab-beginners"
+                        class="nav-tab text-sm font-bold uppercase tracking-widest">Learner Circle</button>
+                    <button onclick="setTab('swaps')" id="tab-swaps"
+                        class="nav-tab text-sm font-bold uppercase tracking-widest flex items-center gap-2">
+                        My Swaps <span id="swap-count"
+                            class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full text-[10px]">0</span>
                     </button>
                 </div>
-            `;
-            return card;
-        }
 
-        function renderBrowse() {
-            const grid = document.getElementById('swappersGrid');
-            grid.innerHTML = '';
+                <div id="content-area" class="grid grid-cols-1 md:grid-cols-2 gap-8 animate-rise"></div>
+            </main>
+        </div>
+    </section>
 
-            const filtered = USERS.filter(u => {
-                const matchesCat = currentCategory === 'all' || u.category === currentCategory;
-                const matchesSearch = u.offers.some(s => s.toLowerCase().includes(searchQuery)) ||
-                    u.name.toLowerCase().includes(searchQuery);
-                return matchesCat && matchesSearch;
-            });
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="fixed bottom-10 right-10 z-[100] flex flex-col gap-4"></div>
 
-            filtered.forEach(u => grid.appendChild(createCard(u)));
-        }
+    <script>
+        const NETWORK_POOL = [
+            { id: '1', name: 'Sebastian V.', city: 'San Francisco', role: 'Professional', have: ['Python', 'Data Science', 'SQL'], want: ['Figma'], sp: 2840, rating: '4.9', avatar: 'SV', match: 98 },
+            { id: '2', name: 'Isabella R.', city: 'London', role: 'Professional', have: ['UI Design', 'Sketching', 'Figma'], want: ['React'], sp: 1450, rating: '4.8', avatar: 'IR', match: 85 },
+            { id: '3', name: 'Marcus Sterling', city: 'Toronto', role: 'Professional', have: ['Pitching', 'Leadership'], want: ['Spanish'], sp: 890, rating: '4.7', avatar: 'MS', match: 72 },
+            { id: '4', name: 'Aria Thorne', city: 'Berlin', role: 'Professional', have: ['Solidity', 'Blockchain'], want: ['Economics'], sp: 3600, rating: '5.0', avatar: 'AT', match: 94 },
+            { id: '5', name: 'Arthur Pen', city: 'New York', role: 'Professional', have: ['Calculus', 'Physics'], want: ['Piano'], sp: 1100, rating: '4.5', avatar: 'AP', match: 65 },
+        ];
 
-        function renderBeginners() {
-            const grid = document.getElementById('beginnersGrid');
-            grid.innerHTML = '';
-            BEGINNERS.forEach(b => grid.appendChild(createCard(b, true)));
-        }
+        const BEGINNER_POOL = [
+            { id: 'b1', name: 'Toby Miller', city: 'Seattle', role: 'Student', have: [], want: ['Python', 'Math'], sp: 45, avatar: 'TM', bio: 'Recent high school grad eager to dive into code.' },
+            { id: 'b2', name: 'Rina Jain', city: 'Mumbai', role: 'Student', have: [], want: ['Photography', 'Lighting'], sp: 20, avatar: 'RJ', bio: 'Just got my first camera, looking for lighting tips.' },
+        ];
 
-        function renderLeaderboard() {
-            const body = document.getElementById('leaderboardBody');
-            body.innerHTML = '';
-            const sorted = [...USERS].sort((a, b) => b.xp - a.xp).slice(0, 8);
+        let state = {
+            view: 'landing',
+            activeTab: 'matches',
+            profile: {
+                name: '', city: '', have: '', want: '', role: 'Student',
+                points: 350, streak: 3, level: 1
+            },
+            activeSwaps: [],
+            currentChat: null
+        };
 
-            sorted.forEach((u, i) => {
-                const row = document.createElement('div');
-                row.className = 'lb-row';
-                row.innerHTML = `
-                    <div class="rank">#${i + 1}</div>
-                    <div class="lb-user">
-                        ${getAvatar(u.name, u.color)}
-                        <div class="mono">${u.name}</div>
-                    </div>
-                    <div class="lb-skill mono">${u.offers[0]}</div>
-                    <div class="lb-xp mono">${u.xp} XP</div>
-                `;
-                body.appendChild(row);
-            });
-        }
-
-        // --- INTERACTIONS ---
-        function handleBtnClick(e, isBeginner, id) {
-            e.stopPropagation();
-            if (isBeginner) {
-                const btn = e.target;
-                const originalText = btn.innerText;
-                btn.innerText = "XP Gained! 🔥";
-                btn.style.backgroundColor = "#7c6dfa";
-                btn.style.color = "white";
-                showToast("You earned +15 XP for mentoring! 🌟");
-                setTimeout(() => {
-                    btn.innerText = originalText;
-                    btn.style.backgroundColor = "var(--accent)";
-                    btn.style.color = "black";
-                }, 2000);
-            } else {
-                showToast("Swap request sent! 🎉");
+        function showView(viewId) {
+            document.querySelectorAll('section').forEach(s => s.classList.add('hide'));
+            document.getElementById('view-' + viewId).classList.remove('hide');
+            state.view = viewId;
+            if (viewId === 'dashboard') {
+                updateXPUI();
+                renderContent();
+                renderSidebarSwaps();
             }
         }
 
-        function showToast(msg) {
-            const container = document.getElementById('toastContainer');
-            const toast = document.createElement('div');
-            toast.className = 'toast';
-            toast.innerText = msg;
-            container.appendChild(toast);
-            setTimeout(() => toast.remove(), 3000);
+        function setRole(role) {
+            state.profile.role = role;
+            const haveField = document.getElementById('have-field-container');
+            const sub = document.getElementById('setup-subtitle');
+            document.getElementById('role-student').classList.toggle('active', role === 'Student');
+            document.getElementById('role-pro').classList.toggle('active', role === 'Professional');
+
+            if (role === 'Student') {
+                haveField.classList.add('hide');
+                sub.innerText = "Beginners focus on finding mentors to guide their learning journey.";
+            } else {
+                haveField.classList.remove('hide');
+                sub.innerText = "Mentors offer their mastery and look for professional peers to swap skills.";
+            }
         }
 
-        document.getElementById('skillSearch').addEventListener('input', (e) => {
-            searchQuery = e.target.value.toLowerCase();
-            renderBrowse();
-        });
+        function finishSetup() {
+            const name = document.getElementById('setup-name').value;
+            const city = document.getElementById('setup-city').value;
+            const want = document.getElementById('setup-want').value;
+            const have = document.getElementById('setup-have').value;
 
-        document.querySelectorAll('.filter-tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                currentCategory = tab.dataset.cat;
-                renderBrowse();
-            });
-        });
+            if (!name || !city || !want || (state.profile.role === 'Professional' && !have)) {
+                spawnToast("Profile requirements incomplete.", "error");
+                return;
+            }
 
-        // --- MODAL LOGIC ---
-        function openModal(user, isBeginner) {
-            const modal = document.getElementById('profileModal');
-            const content = document.getElementById('modalContent');
+            state.profile = { ...state.profile, name, city, have: state.profile.role === 'Student' ? '' : have, want };
+            document.getElementById('display-name').innerText = name.split(' ')[0];
+            document.getElementById('header-location').innerText = city.toUpperCase();
+            document.getElementById('header-role').innerText = state.profile.role.toUpperCase();
+            document.getElementById('user-avatar').innerText = name[0].toUpperCase();
 
-            content.innerHTML = `
-                <div class="modal-grid">
-                    <div>
-                        <div class="avatar" style="width: 150px; height: 150px; font-size: 3rem; background-color: ${user.color}; margin-bottom: 1.5rem;">
-                            ${user.name.split(' ').map(n => n[0]).join('')}
-                        </div>
-                        <h2 style="margin-bottom: 0.5rem">${user.name}</h2>
-                        <p class="mono" style="color: var(--text-secondary); margin-bottom: 1rem;">${user.location}</p>
-                        ${isBeginner ? '' : `
-                            <div class="rating" style="margin-bottom: 1rem;">${'★'.repeat(Math.round(user.rating))} ${user.rating}</div>
-                            <div class="xp-badge" style="position: static; display: inline-block;">${user.level} • ${user.xp} XP</div>
-                        `}
+            showView('dashboard');
+            spawnToast(`Welcome to SkillSwap, ${name}.`);
+        }
+
+        function setTab(tabId) {
+            state.activeTab = tabId;
+            state.currentChat = null;
+            document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+            const target = document.getElementById('tab-' + tabId);
+            if (target) target.classList.add('active');
+            renderContent();
+        }
+
+        function gainXP(event, amount, source) {
+            state.profile.points += amount;
+            const level = Math.floor(state.profile.points / 1000) + 1;
+            if (level > state.profile.level) {
+                state.profile.level = level;
+                spawnToast(`LEVEL UP: ${level}!`);
+            } else {
+                spawnToast(`+${amount} SP: ${source}`);
+            }
+
+            const popup = document.createElement('div');
+            popup.className = 'xp-popup';
+            popup.innerText = `+${amount} SP`;
+            popup.style.left = `${event.clientX}px`;
+            popup.style.top = `${event.clientY}px`;
+            document.body.appendChild(popup);
+            setTimeout(() => popup.remove(), 1000);
+
+            updateXPUI();
+        }
+
+        function updateXPUI() {
+            const points = state.profile.points;
+            const level = Math.floor(points / 1000) + 1;
+            const progress = (points % 1000) / 1000 * 100;
+            document.getElementById('user-level').innerText = `LEVEL ${level}`;
+            document.getElementById('xp-fill').style.width = progress + '%';
+            document.getElementById('xp-text-detail').innerText = `${points.toLocaleString()} SP`;
+            document.getElementById('swap-count').innerText = state.activeSwaps.length;
+        }
+
+        function renderSidebarSwaps() {
+            const list = document.getElementById('active-swaps-list');
+            list.innerHTML = '';
+            if (state.activeSwaps.length === 0) {
+                list.innerHTML = '<p class="text-[10px] text-emerald-800/30 italic">Connections will appear here.</p>';
+                return;
+            }
+            state.activeSwaps.forEach(swap => {
+                const item = document.createElement('div');
+                item.className = 'flex items-center gap-3 p-2 bg-white/50 rounded-xl cursor-pointer hover:bg-white transition-all border border-emerald-100';
+                item.onclick = () => {
+                    setTab('swaps');
+                    openChat(swap.id);
+                };
+                item.innerHTML = `
+                    <div class="w-8 h-8 rounded-lg bg-emerald-700 flex items-center justify-center font-bold text-white text-xs">${swap.avatar}</div>
+                    <div class="overflow-hidden">
+                        <p class="text-[11px] font-bold truncate">${swap.name}</p>
+                        <p class="text-[9px] text-emerald-600">Active Match</p>
                     </div>
-                    <div>
-                        <h3 style="margin-bottom: 1rem;">Bio</h3>
-                        <p style="margin-bottom: 2rem; color: var(--text-secondary);">${user.bio || "Just a keen learner looking to swap skills in the neighborhood."}</p>
-                        
-                        <div style="display: flex; gap: 3rem; margin-bottom: 2rem;">
-                            ${isBeginner ? '' : `
-                                <div>
-                                    <h4 class="mono" style="margin-bottom: 0.5rem; color: var(--accent);">Teaches</h4>
-                                    <div class="tags">${user.offers.map(s => `<span class="tag tag-offer">${s}</span>`).join('')}</div>
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        function proposeSwap(event, id, poolName) {
+            const pool = poolName === 'NETWORK' ? NETWORK_POOL : BEGINNER_POOL;
+            const person = pool.find(p => p.id === id);
+
+            if (state.activeSwaps.find(s => s.id === id)) {
+                spawnToast("You are already swapping with this member.", "error");
+                return;
+            }
+
+            state.activeSwaps.push(person);
+            gainXP(event, 100, 'Strategic Outreach');
+            spawnToast(`Knowledge Swap started with ${person.name}!`);
+            renderSidebarSwaps();
+            updateXPUI();
+            renderContent();
+        }
+
+        function openChat(id) {
+            state.currentChat = state.activeSwaps.find(s => s.id === id);
+            renderContent();
+        }
+
+        function renderContent() {
+            const area = document.getElementById('content-area');
+            area.innerHTML = '';
+            area.className = 'grid grid-cols-1 md:grid-cols-2 gap-8 animate-rise';
+
+            // IF MY SWAPS TAB
+            if (state.activeTab === 'swaps') {
+                if (state.currentChat) {
+                    renderChatUI(area);
+                } else {
+                    area.className = 'col-span-full space-y-4';
+                    if (state.activeSwaps.length === 0) {
+                        area.innerHTML = `
+                            <div class="py-24 text-center glass border border-emerald-100 rounded-[3rem]">
+                                <span class="text-4xl block mb-4">📭</span>
+                                <p class="text-emerald-800/40 serif italic text-xl">Your swap list is currently empty.</p>
+                                <button onclick="setTab('matches')" class="mt-4 text-emerald-700 font-bold hover:underline">Find a Mentor or Peer</button>
+                            </div>
+                        `;
+                    } else {
+                        state.activeSwaps.forEach(swap => {
+                            const card = document.createElement('div');
+                            card.className = 'glass p-6 flex items-center justify-between hover:border-emerald-500/30 transition-all cursor-pointer';
+                            card.onclick = () => openChat(swap.id);
+                            card.innerHTML = `
+                                <div class="flex items-center gap-5">
+                                    <div class="w-14 h-14 organic-radius bg-emerald-700 flex items-center justify-center text-xl font-bold text-white shadow-md">${swap.avatar}</div>
+                                    <div>
+                                        <h4 class="font-bold text-lg text-emerald-950">${swap.name}</h4>
+                                        <p class="text-xs text-emerald-600 font-medium">Topic: ${swap.have[0] || swap.want[0]}</p>
+                                    </div>
                                 </div>
-                            `}
-                            <div>
-                                <h4 class="mono" style="margin-bottom: 0.5rem; color: var(--secondary);">Learning</h4>
-                                <div class="tags">${user.wants.map(s => `<span class="tag tag-want">${s}</span>`).join('')}</div>
+                                <div class="flex items-center gap-4">
+                                    <span class="text-[10px] font-bold uppercase text-emerald-800/40">Active Session</span>
+                                    <button class="btn-action px-6 py-2 text-[10px] font-bold uppercase tracking-widest">Connect</button>
+                                </div>
+                            `;
+                            area.appendChild(card);
+                        });
+                    }
+                }
+                return;
+            }
+
+            // DYNAMIC DISCOVERY LOGIC
+            let pool;
+            if (state.activeTab === 'beginners') {
+                pool = BEGINNER_POOL;
+            } else if (state.activeTab === 'matches') {
+                // If user is a student, "Matches" shows Professionals offering what they want
+                if (state.profile.role === 'Student') {
+                    const myWants = state.profile.want.toLowerCase();
+                    pool = NETWORK_POOL.filter(p => p.have.some(h => myWants.includes(h.toLowerCase())));
+                } else {
+                    // Professionals see high-overlap Professional matches
+                    pool = NETWORK_POOL.filter(p => p.match > 80);
+                }
+            } else {
+                pool = NETWORK_POOL;
+            }
+
+            if (pool.length === 0) {
+                area.innerHTML = `<div class="col-span-full py-20 text-center text-emerald-800/30 serif italic">No members found in this category.</div>`;
+                return;
+            }
+
+            pool.forEach(peer => {
+                const isActive = state.activeSwaps.find(s => s.id === peer.id);
+                const card = document.createElement('div');
+                card.className = 'glass p-8 rounded-[3rem] space-y-6 relative overflow-hidden group hover:border-emerald-500/30 transition-all bg-white/40';
+
+                // Card Header framing
+                let badgeText = state.activeTab === 'beginners' ? 'LEARNER' : (peer.match || 90) + '% AFFINITY';
+                if (state.profile.role === 'Student' && peer.role === 'Professional') badgeText = 'READY TO TEACH';
+
+                card.innerHTML = `
+                    <div class="absolute top-0 right-0 leaf-pill px-6 py-2 rounded-bl-[2rem] font-bold text-[10px] italic">
+                        ${badgeText}
+                    </div>
+                    <div class="flex items-start gap-5">
+                        <div class="w-16 h-16 organic-radius bg-emerald-50 border border-emerald-100 flex items-center justify-center font-bold text-2xl text-emerald-600">${peer.avatar}</div>
+                        <div>
+                            <h4 class="font-black text-xl serif text-emerald-950 italic group-hover:text-emerald-700 transition-colors">${peer.name}</h4>
+                            <p class="text-[10px] font-bold text-emerald-800/40 uppercase tracking-widest mt-1">${peer.city} • ${peer.role}</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="space-y-2">
+                            <p class="text-[9px] font-bold text-emerald-800/30 uppercase tracking-[0.2em]">Mastery</p>
+                            <div class="flex flex-wrap gap-2">
+                                ${peer.have.length > 0 ? peer.have.map(s => `<span class="bg-emerald-700/5 text-emerald-700 px-3 py-1 rounded-lg text-[10px] font-bold border border-emerald-700/10 italic">${s}</span>`).join('') : '<span class="text-[10px] text-emerald-800/40 italic">Exploring Mastery</span>'}
                             </div>
                         </div>
+                        <div class="space-y-2">
+                            <p class="text-[9px] font-bold text-emerald-800/30 uppercase tracking-[0.2em]">Seeking</p>
+                            <div class="flex flex-wrap gap-2">
+                                ${peer.want.map(s => `<span class="bg-slate-100 text-slate-500 px-3 py-1 rounded-lg text-[10px] font-bold border border-slate-200">${s}</span>`).join('')}
+                            </div>
+                        </div>
+                    </div>
+                    ${isActive ?
+                        `<div class="w-full text-center py-4 bg-emerald-50 rounded-2xl text-emerald-700 font-bold italic text-sm">Swap In Progress ✓</div>` :
+                        `<button onclick="proposeSwap(event, '${peer.id}', '${state.activeTab === 'beginners' ? 'BEGINNER' : 'NETWORK'}')" class="btn-action w-full py-4 rounded-2xl text-[10px] font-bold uppercase tracking-widest shadow-md">
+                            ${state.profile.role === 'Student' ? 'Request Mentorship' : 'Propose Knowledge Swap'}
+                        </button>`
+                    }
+                `;
+                area.appendChild(card);
+            });
+        }
 
-                        ${isBeginner ? '' : `
-                            <h3 style="margin-bottom: 1rem;">Community Reviews</h3>
-                            ${user.reviews.length ? user.reviews.map(r => `
-                                <div class="review-card">
-                                    <p>"${r.text}"</p>
-                                    <p class="mono" style="margin-top: 0.5rem; color: var(--accent)">- ${r.rater}</p>
-                                </div>
-                            `).join('') : '<p style="color: var(--text-secondary)">No reviews yet.</p>'}
-
-                            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">XP History</h3>
-                            <ul class="history-log">
-                                <li class="history-item">Sent 5 requests this week</li>
-                                <li class="history-item">Completed "Python for Beginners" swap</li>
-                                <li class="history-item">Earned +50 XP for "Top Contributor" badge</li>
-                            </ul>
-                        `}
-
-                        <button class="btn btn-primary" style="width: 100%; margin-top: 2rem;" 
-                            onclick="handleBtnClick(event, ${isBeginner}, ${user.id})">
-                             ${isBeginner ? 'Mentor This Person (+15 XP)' : 'Request Swap'}
+        function renderChatUI(area) {
+            area.className = 'col-span-full h-[600px] flex flex-col bg-white/40 border border-emerald-100 rounded-[2.5rem] overflow-hidden animate-rise';
+            const swap = state.currentChat;
+            area.innerHTML = `
+                <div class="p-6 bg-white/80 border-b border-emerald-100 flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <button onclick="setTab('swaps')" class="text-emerald-700 p-2 hover:bg-emerald-50 rounded-full transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                         </button>
+                        <div class="w-10 h-10 organic-radius bg-emerald-700 flex items-center justify-center font-bold text-white shadow-sm">${swap.avatar}</div>
+                        <div>
+                            <h4 class="font-bold serif italic text-emerald-950">${swap.name}</h4>
+                            <p class="text-[10px] uppercase font-bold text-emerald-600">Swap Interest: ${swap.have[0] || swap.want[0]}</p>
+                        </div>
+                    </div>
+                    <button class="btn-action px-6 py-2 text-[10px] font-bold uppercase tracking-widest bg-emerald-100 !text-emerald-800 border border-emerald-200">Arrange Session</button>
+                </div>
+                <div class="flex-1 overflow-y-auto p-8 space-y-6 flex flex-col no-scrollbar">
+                    <div class="self-start max-w-[70%] p-4 bubble-in text-sm font-medium text-emerald-900 shadow-sm animate-rise">
+                        Greetings ${state.profile.name}! I would be honored to guide you through ${swap.have[0] || 'your interests'}. Are you available for a session this week?
+                    </div>
+                    <div class="self-end max-w-[70%] p-4 bubble-out text-sm font-medium shadow-md animate-rise">
+                        Thank you so much! I am very excited. Tuesday or Thursday at the hub works best for me.
+                    </div>
+                    <div class="self-start max-w-[70%] p-4 bubble-in text-sm font-medium italic text-emerald-800/40">
+                        ${swap.name} is preparing a response...
                     </div>
                 </div>
+                <div class="p-6 bg-white/80 border-t border-emerald-100 flex gap-4">
+                    <input type="text" placeholder="Type a message..." class="flex-1 bg-emerald-50/50 border border-emerald-100 p-4 rounded-2xl outline-none focus:border-emerald-400 focus:bg-white transition-all font-medium text-emerald-950">
+                    <button onclick="gainXP(event, 25, 'Digital Exchange')" class="btn-action px-8 py-4 font-bold uppercase tracking-widest shadow-md">Send</button>
+                </div>
             `;
-
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
         }
 
-        function closeModal() {
-            document.getElementById('profileModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
+        function spawnToast(msg, type = "success") {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `glass px-6 py-4 rounded-2xl shadow-2xl animate-rise border-l-4 ${type === 'success' ? 'border-emerald-500' : 'border-rose-300'} flex items-center gap-4 bg-white`;
+            toast.innerHTML = `
+                <div class="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center text-white">
+                    ${type === 'success' ? '✓' : '⚠️'}
+                </div>
+                <p class="font-bold text-sm text-emerald-950 italic">${msg}</p>
+            `;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(10px)';
+                setTimeout(() => toast.remove(), 500);
+            }, 4000);
         }
 
-        window.onclick = (e) => {
-            if (e.target.className === 'modal-overlay') closeModal();
-        };
-
-        // --- INIT ---
-        renderBrowse();
-        renderBeginners();
-        renderLeaderboard();
+        document.addEventListener('DOMContentLoaded', () => {
+            showView('landing');
+            setRole('Student');
+        });
     </script>
 </body>
 
